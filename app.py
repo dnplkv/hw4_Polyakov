@@ -33,13 +33,12 @@ def home():
     return "Welcome Home!"
 
 
-
 @app.route("/users/all")
 def users_all():
     tab = User.query.all()
     users = [
-        dict(id=row[0], name=row[1], email=row[2])
-        for row in tab
+        dict(id=usr.id, name=usr.name, email=usr.email)
+        for usr in tab
     ]
     db.session.commit()
     return jsonify(users)
@@ -60,15 +59,12 @@ def users_del_all():
     return redirect(url_for('users_all'))
 
 
-
 @app.route("/users/count")
 def users_count():
-    User.query.count()
-    row = User.query.all()
-    if row is None:
+    tab = User.query.count()
+    if tab is None:
         return ValueError("Could not count users")
-    return jsonify({"count": row[0]})
-
+    return jsonify({"count": tab})
 
 
 @app.route("/users/add", methods=['GET', 'POST'])
@@ -85,4 +81,4 @@ def users_add():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
