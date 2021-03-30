@@ -1,9 +1,6 @@
-import sqlite3
-from flask import Flask, jsonify, request, redirect, url_for, render_template
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import create_engine
 from faker import Faker
+from flask import Flask, jsonify, redirect, render_template, request, url_for
+from flask_sqlalchemy import SQLAlchemy
 
 
 fake = Faker()
